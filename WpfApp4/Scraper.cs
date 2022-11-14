@@ -27,11 +27,11 @@ namespace Webscraper
 			foreach (var business in Businesses)
 			{
                 var name = HttpUtility.HtmlDecode(business.SelectSingleNode(".//a[@class = 'business-name']").InnerText);
-				var number = HttpUtility.HtmlDecode(business.SelectSingleNode("//div[@class = 'info-section info-secondary']").InnerText);
-                var website = HttpUtility.HtmlDecode(business.SelectSingleNode("//a[@class = 'track-visit-website']").GetAttributeValue("href", string.Empty));
-                //var address = HttpUtility.HtmlDecode(business.SelectSingleNode("//div[@class = 'adr']").InnerText);
+                var number = HttpUtility.HtmlDecode(business.SelectSingleNode(".//div[@class = 'phones phone primary']").InnerText);
+                var website = HttpUtility.HtmlDecode(business.SelectSingleNode(".//a[@class = 'track-visit-website']").GetAttributeValue("href", string.Empty));
+                var address = HttpUtility.HtmlDecode(business.SelectSingleNode(".//div[@class = 'adr']").InnerText);
 
-				_entries.Add(new EntryModel { Name = name, Number = number, Website = website });
+				_entries.Add(new EntryModel { Name = name, Number = number, Website = website, Address = address });
 
 			}
 		}
